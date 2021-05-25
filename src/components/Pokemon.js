@@ -32,7 +32,7 @@ export default function Pokemon() {
             {data ? (
                 <>
             <h3>{data.name.english}</h3>
-            <img src={img} a={data.name.english} height="500"/>
+            <img src={img} a={data.name.english}/>
             <h4>Type: {data.type[0]}{data.type[1] && `, ${data.type[1]}`}</h4>
             <h5>Stats: <ul>
                 <li>HP: {data.base.HP}</li>
