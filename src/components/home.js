@@ -1,6 +1,8 @@
 import Axios from 'axios'
 import { useEffect, useState } from 'react'
-import chooseImg from './img/choose.png'
+import chooseOwnImg from './img/chooseOwn.png'
+import chooseOppImg from './img/chooseOpp.png'
+import pokeball from './img/pokeball.png'
 import { Label, Select } from '@rebass/forms'
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass'
 import './home.css'
@@ -11,6 +13,7 @@ export default function Home() {
     const [pokeData, setPokeData] = useState('')
     const [img, setImg] = useState()
     const [ownPokemon, setOwnPokemon] = useState()
+    const [opponentPokemon, setOpponentPokemon] = useState()
 
     useEffect(() => {
         fetchData();
@@ -45,6 +48,14 @@ export default function Home() {
         setImg()
         setPokeData('')
         setSelectedPokemon('')
+        document.body.style.backgroundColor = 'lightblue';
+    }
+
+    const selectSecondPokemon = () => {
+        setOpponentPokemon(pokeData.id)
+        setImg()
+        setPokeData('')
+        setSelectedPokemon('')
     }
 
 
@@ -52,18 +63,20 @@ export default function Home() {
 
     return (
         <>
-            <img src={chooseImg} width={500} />
-            <Flex mx={-2}>
+            
+            {!ownPokemon ?
+            <>
+            <img src={chooseOwnImg} className='headingText '/>
+            <Flex mx={-2} className='ownSelectBox'>
                 <Box width={1 / 3} px={2}>
                     <Text p={1} color='background' bg='primary'>
-                        Image of your Pokemon:
                         <br />
-                        {img && pokeData.name ? <img src={img} className='pokeImg' a={pokeData.name.english} /> : <><p>Please select a Pokemon first :)</p></>}
+                        {img && pokeData.name ? <img src={img} className='pokeImg flip-horizontally' a={pokeData.name.english} /> : <img src={pokeball} className='pokeImg' a='pokeball' />}
                     </Text>
                 </Box>
                 <Box width={1 / 3} px={2}>
                     <Text p={1} color='background' bg='primary'>
-                        Please Select your own Pokemon
+                        <h2 className='selectHeading'>Please Select your own Pokemon</h2>
                         {data ?
                             <>
                                 <Box>
@@ -82,29 +95,84 @@ export default function Home() {
                                     </Select>
                                 </Box>
 
-                                {img && pokeData.name && <button onClick={selectFirstPokemon}>Select {pokeData.name.english} as your Pokemon!</button>}
+                                {img && pokeData.name && <button className='selectButton' onClick={selectFirstPokemon}>Select {pokeData.name.english} as your Pokemon!</button>}
                             </>
                             : 'loading...'}
                     </Text>
                 </Box>
                 <Box width={1 / 3} px={2}>
                     <Text p={1} color='background' bg='primary'>
-                        Stats:
                         {pokeData.name ? <>
                             <h3>{pokeData.name.english}</h3>
                             <h4>Type: {pokeData.type[0]}{pokeData.type[1] && `, ${pokeData.type[1]}`}</h4>
-                            <h5>Stats: <ul>
+                            <ul>
                                 <li>HP: {pokeData.base.HP}</li>
                                 <li>Attack: {pokeData.base.Attack}</li>
                                 <li>Defense: {pokeData.base.Defense}</li>
                                 <li>SP. Attack: {pokeData.base['Sp. Attack']}</li>
                                 <li>SP. Defense: {pokeData.base['Sp. Defense']}</li>
                                 <li>Speed: {pokeData.base.Speed}</li>
-                            </ul></h5>
-                        </> : <><p>Please select a Pokemon first :)</p></>}
+                            </ul>
+                        </> : <><p>Select a Pokemon to show its Stats :)</p></>}
                     </Text>
                 </Box>
             </Flex>
+            </>:
+
+                /* Here Starts the Opponent Select */
+                <>
+                <img src={chooseOppImg} className='headingText '/>
+                <Flex mx={-2} className='oppSelectBox'>
+                    <Box width={1 / 3} px={2}>
+                    <Text p={1} color='background' bg='primary'>
+                        {pokeData.name ? <>
+                                <h3>{pokeData.name.english}</h3>
+                                <h4>Type: {pokeData.type[0]}{pokeData.type[1] && `, ${pokeData.type[1]}`}</h4>
+                                <ul>
+                                    <li>HP: {pokeData.base.HP}</li>
+                                    <li>Attack: {pokeData.base.Attack}</li>
+                                    <li>Defense: {pokeData.base.Defense}</li>
+                                    <li>SP. Attack: {pokeData.base['Sp. Attack']}</li>
+                                    <li>SP. Defense: {pokeData.base['Sp. Defense']}</li>
+                                    <li>Speed: {pokeData.base.Speed}</li>
+                                </ul>
+                            </> : <><p>Select a Pokemon to show its Stats :)</p></>}
+                        </Text>
+                    </Box>
+                    <Box width={1 / 3} px={2}>
+                        <Text p={1} color='background' bg='primary'>
+                        <h2 className='selectHeading'>Please Select your opponents Pokemon</h2>
+                        {data ?
+                                <>
+                                    <Box>
+                                        <Label htmlFor='pokemon'>Choose who you fight against!</Label>
+                                        <Select
+                                            id='pokemon'
+                                            name='pokemon'
+                                            defaultValue={null}
+                                            onChange={((e) => setSelectedPokemon(e.target.selectedIndex + 1))}>
+                                            {Object.entries(data).map(([key, e]) => (
+                                                <option
+                                                    key={key}>
+                                                    {e.name.english}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    </Box>
+
+                                    {img && pokeData.name && <button className='selectButton' onClick={selectSecondPokemon}>Select {pokeData.name.english} as your opponents Pokemon!</button>}
+                                </>
+                                : 'loading...'}
+                        </Text>
+                    </Box>
+                    <Box width={1 / 3} px={2}>
+                    <Text p={1} color='background' bg='primary'>
+                        <br />
+                            {img && pokeData.name ? <img src={img} className='pokeImg' a={pokeData.name.english} /> : <img src={pokeball} className='pokeImg' a='pokeball' />}
+                        </Text>
+                    </Box>
+                </Flex>
+                </>}
         </>
     )
 }

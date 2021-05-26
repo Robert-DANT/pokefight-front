@@ -1,3 +1,47 @@
+body {
+    background-color: cyan;
+}
+
+.flip-horizontally {
+    transform: scaleX(-1);
+  }
+
 .pokeImg {
-    height: 300px
+    height: 300px;
+    margin-top: 40px;
+}
+
+.headingText {
+    margin-top: 40px;
+    width: 500px;
+}
+
+.selectHeading {
+    font-size: 2vw;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.selectButton {
+    outline: none;
+    margin-top: 50px;
+}
+
+ul {
+    text-align: left;
+    align-items: center;
+}
+li {
+    margin-left: 20%;
+    margin-right: 20%;
+    list-style: none;
+    margin-top: 5px;
+}
+
+.ownSelectBox {
+    /* border: 5px solid green; */
+}
+
+.oppSelectBox {
+    /* border: 5px solid red; */
 }
