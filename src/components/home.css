@@ -1,0 +1,83 @@
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+}
+
+.selectionScreen {
+    background: linear-gradient(90deg, rgba(123,237,230,1) 0%, rgba(14,4,186,1) 100%);
+    background-size: 400% !important;
+    animation: bg-animation 15s infinite alternate;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.flip-horizontally {
+    transform: scaleX(-1);
+  }
+
+.pokeImg {
+    height: 30vw;
+    margin-top: 0px;
+}
+
+.headingText {
+    margin-top: 40px;
+    width: 50vw;
+}
+
+.selectHeading {
+    font-size: 2vw;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.selectButton {
+    outline: none;
+    margin-top: 50px;
+    background: transparent;
+    padding: 5px 12px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+ul {
+    text-align: left;
+    align-items: center;
+}
+
+.statsList {
+border: 2px solid white;
+width: 250px;
+margin-left: auto;
+margin-right: auto;
+border-radius: 20px;
+margin-bottom: 5%;
+margin-top: 5%;
+}
+
+li {
+    margin-left: 10%;
+    list-style: none;
+    margin-top: 5px;
+}
+
+button {
+    cursor: pointer;
+}
+
+@keyframes bg-animation {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}
+
+.ownSelectBox {
+    /* border: 5px solid green; */
+}
+
+.oppSelectBox {
+    /* border: 5px solid red; */
+}
