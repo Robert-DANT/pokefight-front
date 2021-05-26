@@ -11,7 +11,7 @@
 .pokefont {
     /* font-size: 100px; */
     font-family: 'Pokemon', sans-serif;
-    /* letter-spacing: 1rem; */
+    letter-spacing: 3px;
     text-transform: uppercase;
 
     /* background: -webkit-linear-gradient(90deg, rgb(16, 15, 122) 0%, rgb(1, 234, 255) 100%);; */
@@ -20,7 +20,7 @@
 /*     stroke-linecap: round; */
     color: #ffe600 !important;
     text-shadow:
-    2px 2px 0 rgb(0, 130, 170),
+    2px 2px 0 rgb(0, 0, 0),
   -1px -1px 0 #000,  
    1px -1px 0 #000,
    -1px 1px 0 #000,

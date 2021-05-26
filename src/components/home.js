@@ -29,8 +29,12 @@ export default function Home() {
     const [pokeData, setPokeData] = useState('')
     const [img, setImg] = useState()
     const [ownPokemon, setOwnPokemon] = useState()
+    const [ownPokemonPower, setOwnPokemonPower] = useState()
     const [opponentPokemon, setOpponentPokemon] = useState()
+    const [opponentPokemonPower, setOpponentPokemonPower] = useState()
     const [startScreen, setStartScreen] = useState(true)
+    const [winner, setWinner] = useState()
+    const [winnerData, setWinnerData] = useState()
 
     useEffect(() => {
         fetchData();
@@ -54,6 +58,12 @@ export default function Home() {
             .catch((error) => console.log(error));
     };
 
+    const fetchWinnerData = async () => {
+        await Axios.get(`https://pokefight-back.herokuapp.com/pokemon/${winner}`)
+            .then((response) => setWinnerData(response.data))
+            .catch((error) => console.log(error));
+    };
+
     const fetchImg = async () => {
         await Axios.get(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`)
             .then((response) => setImg(response.data.sprites.front_default))
@@ -62,6 +72,7 @@ export default function Home() {
 
     const selectFirstPokemon = () => {
         setOwnPokemon(pokeData.id)
+        setOwnPokemonPower(Number(pokeData.base.HP) + Number(pokeData.base.Attack) + Number(pokeData.base.Defense) + Number(pokeData.base['Sp. Attack']) + Number(pokeData.base['Sp. Defense']) + Number(pokeData.base.Speed))
         setImg()
         setPokeData('')
         setSelectedPokemon('')
@@ -69,13 +80,33 @@ export default function Home() {
 
     const selectSecondPokemon = () => {
         setOpponentPokemon(pokeData.id)
+        setOpponentPokemonPower(Number(pokeData.base.HP) + Number(pokeData.base.Attack) + Number(pokeData.base.Defense) + Number(pokeData.base['Sp. Attack']) + Number(pokeData.base['Sp. Defense']) + Number(pokeData.base.Speed))
+        setImg()
+        setPokeData('')
+        /* setSelectedPokemon('') */
+    }
+    useEffect(() => {
+        console.log(`Own Power: ${ownPokemonPower}`)
+        console.log(`Opponent Power: ${opponentPokemonPower}`)
+        calcWinner()
+    }, [opponentPokemonPower, opponentPokemon]);
+
+    const calcWinner = () => {
+        if (ownPokemonPower >= opponentPokemonPower) setWinner(ownPokemon || 'You')
+        else setWinner(opponentPokemon || 'Your Opponent')
+    }
+
+    const startFromBeginning = () => {
         setImg()
         setPokeData('')
         setSelectedPokemon('')
+        setOwnPokemon()
+        setOpponentPokemon()
+        setOwnPokemonPower()
+        setOpponentPokemonPower()
+        setWinnerData()
         setStartScreen(true)
     }
-
-
 
 
     return (
@@ -156,21 +187,23 @@ export default function Home() {
                 <Box width={[1/1, 4 / 11]} px={2}>
                     <Text p={1} color='background' bg='primary'>
                         {pokeData.name ? <>
-                            <h3 className='pokefont'>Stats of {pokeData.name.english}:</h3>
-                            <h4 className='pokefont'>Type: {pokeData.type[0]}{pokeData.type[1] && `, ${pokeData.type[1]}`}</h4>
+                            <h3 className='pokefont selectHeading'>Stats of {pokeData.name.english}:</h3>
+                            <div className='statsList'>
                             <ul>
+                                <li className='pokefont'>Type: {pokeData.type[0]}{pokeData.type[1] && `, ${pokeData.type[1]}`}</li>
                                 <li className='pokefont'>HP: {pokeData.base.HP}</li>
                                 <li className='pokefont'>Attack: {pokeData.base.Attack}</li>
                                 <li className='pokefont'>Defense: {pokeData.base.Defense}</li>
                                 <li className='pokefont'>SP. Attack: {pokeData.base['Sp. Attack']}</li>
                                 <li className='pokefont'>SP. Defense: {pokeData.base['Sp. Defense']}</li>
                                 <li className='pokefont'>Speed: {pokeData.base.Speed}</li>
-                            </ul>
-                        </> : <><p className='pokefont'>Select a Pokemon to show its Stats</p></>}
+                                
+                            </ul></div>
+                        </> : <><p className='pokefont selectHeading'>Select a Pokemon to show its Stats</p></>}
                     </Text>
                 </Box>
             </Flex>
-            </div>:
+            </div>: !opponentPokemon ?
 
                 /* Here Starts the Opponent Select */
                 <div className='selectionScreen' style={{background: 'linear-gradient(90deg, rgba(101,4,186,1) 0%, rgba(237,123,129,1) 100%)'}}>
@@ -179,9 +212,10 @@ export default function Home() {
                     <Box width={4 / 11} px={2}>
                     <Text p={1} color='background' bg='primary'>
                         {pokeData.name ? <>
-                            <h3 className='pokefont'>Stats of {pokeData.name.english}:</h3>
-                                <h4 className='pokefont'>Type: {pokeData.type[0]}{pokeData.type[1] && `, ${pokeData.type[1]}`}</h4>
+                            <h3 className='pokefont selectHeading'>Stats of {pokeData.name.english}:</h3>
+                            <div className='statsList'>
                                 <ul>
+                                    <li className='pokefont'>Type: {pokeData.type[0]}{pokeData.type[1] && `, ${pokeData.type[1]}`}</li>
                                     <li className='pokefont'>HP: {pokeData.base.HP}</li>
                                     <li className='pokefont'>Attack: {pokeData.base.Attack}</li>
                                     <li className='pokefont'>Defense: {pokeData.base.Defense}</li>
@@ -189,7 +223,8 @@ export default function Home() {
                                     <li className='pokefont'>SP. Defense: {pokeData.base['Sp. Defense']}</li>
                                     <li className='pokefont'>Speed: {pokeData.base.Speed}</li>
                                 </ul>
-                            </> : <><p className='pokefont'>Select a Pokemon to show its Stats</p></>}
+                                </div>
+                            </> : <><p className='pokefont selectHeading'>Select a Pokemon to show its Stats</p></>}
                         </Text>
                     </Box>
                     <Box width={3 / 11} px={2}>
@@ -227,7 +262,12 @@ export default function Home() {
                         </Text>
                     </Box>
                 </Flex>
-                </div>}
+                </div> : /* Here comes the winner screen */
+                <>
+                <h1>The winner is: {winner}</h1>
+                <button onClick={startFromBeginning} >Start Again :)</button>
+                </>
+                }
         </>
     )
 }
