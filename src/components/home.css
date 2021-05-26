@@ -1,5 +1,14 @@
-body {
-    background-color: cyan;
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+}
+
+.selectionScreen {
+    background: linear-gradient(90deg, rgba(123,237,230,1) 0%, rgba(14,4,186,1) 100%);
+    background-size: 400% !important;
+    animation: bg-animation 15s infinite alternate;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .flip-horizontally {
@@ -7,13 +16,13 @@ body {
   }
 
 .pokeImg {
-    height: 300px;
-    margin-top: 40px;
+    height: 30vw;
+    margin-top: 0px;
 }
 
 .headingText {
     margin-top: 40px;
-    width: 500px;
+    width: 50vw;
 }
 
 .selectHeading {
@@ -36,6 +45,19 @@ li {
     margin-right: 20%;
     list-style: none;
     margin-top: 5px;
+}
+
+button {
+    cursor: pointer;
+}
+
+@keyframes bg-animation {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
 }
 
 .ownSelectBox {
