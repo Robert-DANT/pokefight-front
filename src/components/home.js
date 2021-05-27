@@ -7,6 +7,7 @@ import OwnSelectionScreen from './ownSelectionScreen'
 import OpponentSelectionScreen from './opponentSelectionScreen'
 import GetReadyScreen from './getReadyScreen'
 import WinnerIsScreen from './winnerIsScreen'
+import Winner from './winner'
 
 const customStyles = {
     content: {
@@ -148,8 +149,9 @@ export default function Home() {
                                 <WinnerIsScreen setWinnerIsScreen={setWinnerIsScreen} />
                             </Modal> : !readyScreen && !winnerIsScreen ?
                                 <>
-                                    <h1>The winner is: {winner[0]} with {winnerData.name.english}</h1>
-                                    <button onClick={startFromBeginning} >Start Again :)</button>
+                                    {/*           <h1>The winner is: {winner[0]} with {winnerData.name.english}</h1>
+                                    <button onClick={startFromBeginning} >Start Again :)</button> */}
+                                    <Winner winner={winner} name={winnerData.name.english} startFromBeginning={startFromBeginning} />
                                 </>
                                 : 'loading...'
             }
