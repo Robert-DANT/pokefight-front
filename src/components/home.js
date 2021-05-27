@@ -6,16 +6,17 @@ import StartScreen from './startScreen'
 import OwnSelectionScreen from './ownSelectionScreen'
 import OpponentSelectionScreen from './opponentSelectionScreen'
 import GetReadyScreen from './getReadyScreen'
+import WinnerIsScreen from './winnerIsScreen'
 
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
 };
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
     const [opponentPokemonPower, setOpponentPokemonPower] = useState()
     const [startScreen, setStartScreen] = useState(true)
     const [readyScreen, setReadyScreen] = useState(true)
+    const [winnerIsScreen, setWinnerIsScreen] = useState(true)
     const [winner, setWinner] = useState(false)
     const [winnerData, setWinnerData] = useState()
 
@@ -89,10 +91,10 @@ export default function Home() {
 
     const calcWinner = () => {
         if (ownPokemonPower >= opponentPokemonPower) setWinner(['You', ownPokemon] || 'You')
-        else setWinner(['Opponent',opponentPokemon] || 'Your Opponent')
+        else setWinner(['Opponent', opponentPokemon] || 'Your Opponent')
     }
     useEffect(() => {
-      if(winner[1]) fetchWinnerData()
+        if (winner[1]) fetchWinnerData()
     }, [winner]);
 
     const startFromBeginning = () => {
@@ -106,39 +108,51 @@ export default function Home() {
         setWinnerData()
         setStartScreen(true)
         setReadyScreen(true)
+        setWinnerIsScreen(true)
     }
 
 
     return (
         <>
-        <Modal
-         closeTimeoutMS={200}
-          isOpen={startScreen}
-          onRequestClose={(() => setStartScreen(false))}
-          style={customStyles}
-          contentLabel="Start Screen Modal"
-        >
-            <StartScreen setStartScreen={setStartScreen}/>
-        </Modal>
-            {!ownPokemon ? <OwnSelectionScreen pokeData={pokeData} img={img} data={data} selectFirstPokemon={selectFirstPokemon} setSelectedPokemon={setSelectedPokemon}/>
-            : !opponentPokemon ?
-                <OpponentSelectionScreen pokeData={pokeData} img={img} data={data} selectSecondPokemon={selectSecondPokemon} setSelectedPokemon={setSelectedPokemon} />
-                : winnerData ?
-                <>
-                <Modal
-         closeTimeoutMS={200}
-          isOpen={readyScreen}
-          onRequestClose={(() => setReadyScreen(false))}
-          style={customStyles}
-          contentLabel="Ready Screen Modal"
-        >
-            <GetReadyScreen setReadyScreen={setReadyScreen} ownPokemon={ownPokemon} opponentPokemon={opponentPokemon}/>
-        </Modal>
-                {console.log(winner)}
-                <h1>The winner is: {winner[0]} with {winnerData.name.english}</h1>
-                <button onClick={startFromBeginning} >Start Again :)</button>
-                </> : 'loading...'
-                }
+            <Modal
+                closeTimeoutMS={200}
+                isOpen={startScreen}
+                onRequestClose={(() => setStartScreen(false))}
+                style={customStyles}
+                contentLabel="Start Screen Modal"
+            >
+                <StartScreen setStartScreen={setStartScreen} />
+            </Modal>
+            {!ownPokemon ? <OwnSelectionScreen pokeData={pokeData} img={img} data={data} selectFirstPokemon={selectFirstPokemon} setSelectedPokemon={setSelectedPokemon} />
+                : !opponentPokemon ?
+                    <OpponentSelectionScreen pokeData={pokeData} img={img} data={data} selectSecondPokemon={selectSecondPokemon} setSelectedPokemon={setSelectedPokemon} />
+                    : winnerData && readyScreen ?
+                        <>
+                            <Modal
+                                closeTimeoutMS={200}
+                                isOpen={readyScreen}
+                                onRequestClose={(() => setReadyScreen(false))}
+                                style={customStyles}
+                                contentLabel="Ready Screen Modal"
+                            >
+                                <GetReadyScreen setReadyScreen={setReadyScreen} ownPokemon={ownPokemon} opponentPokemon={opponentPokemon} />
+                            </Modal>
+                        </> : !readyScreen && winnerIsScreen ?
+                            <Modal
+                                closeTimeoutMS={200}
+                                isOpen={winnerIsScreen}
+                                onRequestClose={(() => setWinnerIsScreen(false))}
+                                style={customStyles}
+                                contentLabel="Winner is... Screen Modal"
+                            >
+                                <WinnerIsScreen setWinnerIsScreen={setWinnerIsScreen} />
+                            </Modal> : !readyScreen && !winnerIsScreen ?
+                                <>
+                                    <h1>The winner is: {winner[0]} with {winnerData.name.english}</h1>
+                                    <button onClick={startFromBeginning} >Start Again :)</button>
+                                </>
+                                : 'loading...'
+            }
         </>
     )
 }

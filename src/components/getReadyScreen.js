@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Starburst from './img/starburst.png'
 import ReadyScreenTitle from './img/readyscreentitle.png'
 import './getReady.css';
+import './font.css'
 import {Box,Card,Image,Heading,Text,Flex} from 'rebass'
 
 export default function GetReady({setReadyScreen, ownPokemon, opponentPokemon}) {
@@ -57,7 +58,7 @@ export default function GetReady({setReadyScreen, ownPokemon, opponentPokemon}) 
                                     sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
                             </div>
                             <Heading as='h3'>
-                                {pokeData1 && pokeData1.name.english}
+                            <p className='pokefont'>{pokeData1 && pokeData1.name.english}</p>
                             </Heading>
                         </Box>
                         <Box width={1 / 3} px={2}>
@@ -65,7 +66,7 @@ export default function GetReady({setReadyScreen, ownPokemon, opponentPokemon}) 
                                 <Image src={Starburst} sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
                             </div>
                             <Heading as='h3'className='versus'>
-                                {'VS'}
+                            <p className='pokefont'>{'VS'}</p>
                             </Heading>
                         </Box>
                         <Box width={1 / 3} px={2}>
@@ -74,7 +75,7 @@ export default function GetReady({setReadyScreen, ownPokemon, opponentPokemon}) 
                                     sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
                             </div>
                             <Heading as='h3'>
-                            {pokeData2 && pokeData2.name.english}
+                            <p className='pokefont'>{pokeData2 && pokeData2.name.english}</p>
                             </Heading>
                         </Box>
                     </Flex>
