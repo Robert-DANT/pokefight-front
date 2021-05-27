@@ -6,12 +6,19 @@ import './fiber.css'
 
 
 function Shoe(props) {
-    const group = useRef()
+    const ref = useRef()
     const { nodes, materials } = useGLTF("Pokeball_v02.glb") /* shoe-draco.glb */ /* Pokeball_v02.glb */
     console.log(nodes)
     console.log(materials)
+    useFrame((state) => {
+        const t = state.clock.getElapsedTime()
+        ref.current.rotation.z = -0.2 - (1 + Math.sin(t / 1.5)) / 5
+        ref.current.rotation.x = Math.cos(t / 4) / 2
+        ref.current.rotation.y = Math.sin(t / 4) / 2
+        ref.current.position.y = (1 + Math.sin(t / 1.5)) / 2.5
+      })
     return (
-        <group ref={group} {...props} dispose={null} >
+        <group ref={ref} {...props} dispose={null} >
             <mesh geometry={nodes.black.geometry}  material={materials.black} />
             <mesh geometry={nodes.red.geometry}  material={materials.red} />
             <mesh geometry={nodes.white.geometry}  material={materials.white} />
