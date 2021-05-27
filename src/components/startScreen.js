@@ -1,5 +1,6 @@
 import ball from './img/ball.png'
 import video from './img/video.mp4'
+import StartScreenTitle from './img/startscreentitle.png'
 import './startScreen.css'
 
 export default function StartScreen ({setStartScreen}) {
@@ -15,7 +16,7 @@ export default function StartScreen ({setStartScreen}) {
       <div className="VideoContent">
         <div className="Container">
           <div className='logo'>
-          <img src="https://fontmeme.com/permalink/210526/d6e962a9abeca391ff743d18f8288629.png" alt="pokemon-font" className='startFont' border={0} />
+          <img src={StartScreenTitle} alt="pokemon-font" className='startFont' border={0} />
           </div>
           <div className="start">
             <div>

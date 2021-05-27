@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import StartScreen from './startScreen'
 import OwnSelectionScreen from './ownSelectionScreen'
 import OpponentSelectionScreen from './opponentSelectionScreen'
+import GetReadyScreen from './getReadyScreen'
 
 const customStyles = {
   content : {
@@ -27,6 +28,7 @@ export default function Home() {
     const [opponentPokemon, setOpponentPokemon] = useState()
     const [opponentPokemonPower, setOpponentPokemonPower] = useState()
     const [startScreen, setStartScreen] = useState(true)
+    const [readyScreen, setReadyScreen] = useState(true)
     const [winner, setWinner] = useState(false)
     const [winnerData, setWinnerData] = useState()
 
@@ -103,6 +105,7 @@ export default function Home() {
         setOpponentPokemonPower()
         setWinnerData()
         setStartScreen(true)
+        setReadyScreen(true)
     }
 
 
@@ -123,7 +126,16 @@ export default function Home() {
                 <OpponentSelectionScreen pokeData={pokeData} img={img} data={data} selectSecondPokemon={selectSecondPokemon} setSelectedPokemon={setSelectedPokemon} />
                 : winnerData ?
                 <>
-                {/* Here comes the winner screen */}
+                <Modal
+         closeTimeoutMS={200}
+          isOpen={readyScreen}
+          /* onAfterOpen={} */
+          onRequestClose={(() => setReadyScreen(false))}
+          style={customStyles}
+          contentLabel="Ready Screen Modal"
+        >
+            <GetReadyScreen setReadyScreen={setReadyScreen} ownPokemon={ownPokemon} opponentPokemon={opponentPokemon}/>
+        </Modal>
                 {console.log(winner)}
                 <h1>The winner is: {winner[0]} with {winnerData.name.english}</h1>
                 <button onClick={startFromBeginning} >Start Again :)</button>

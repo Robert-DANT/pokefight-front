@@ -1,0 +1,59 @@
+.readyScreen {
+    background-color: rgb(123, 187, 27);
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    height: 100vh !important;
+    width: 100vw !important;
+    overflow: hidden;
+    text-align: center;
+    justify-content: center;
+}
+
+.readyScreenTitle {
+    margin-top: 50px !important;
+}
+
+.myimage2{
+    color: red;
+    transition-duration: 100ms;
+    transition-property: transform;
+    transition-timing-function: ease;
+    animation: spin 0.05s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.myimage1{
+     
+    transition-duration: 1000ms;
+    transition-property: transform;
+    transition-timing-function:cubic-bezier(1, 1, 0, 1);
+    animation: rotated 0.3s linear infinite alternate;
+}
+/* .myimage1:hover {
+    
+    animation: rotated 1s linear infinite alternate;
+
+} */
+@keyframes rotated {
+    0% {
+        transform: rotate(15deg);
+
+    }
+    100%{
+        transform: rotate(-15deg);
+    }
+}
+.myimage3{
+    
+    animation: rotated 0.35s linear infinite alternate-reverse;
+
+}
