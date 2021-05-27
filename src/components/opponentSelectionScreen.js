@@ -60,7 +60,7 @@ export default function OwnSelectionScreen ({pokeData, img, data, setSelectedPok
                     <Text p={1} color='background' bg='primary'>
                         <br />
                             {img && pokeData.name ? <><h1 className='pokefont'>{pokeData.name.english}</h1> <img src={img} className='pokeImg' a={pokeData.name.english} /> </>
-                            : <img src={pokeball} className='pokeImg' a='pokeball' />}
+                            : <img src={pokeball} className='pokeImg pokeBall' a='pokeball' />}
                         </Text>
                     </Box>
                 </Flex>
