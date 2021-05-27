@@ -64,7 +64,7 @@ export default function GetReady({setReadyScreen, ownPokemon, opponentPokemon}) 
                             <div className='myimage2'>
                                 <Image src={Starburst} sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
                             </div>
-                            <Heading as='h3'>
+                            <Heading as='h3'className='versus'>
                                 {'VS'}
                             </Heading>
                         </Box>
