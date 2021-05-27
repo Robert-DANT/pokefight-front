@@ -1,7 +1,5 @@
 import Axios from 'axios'
 import { useEffect, useState } from 'react'
-import './home.css'
-import './startScreen.css'
 import './font.css'
 import Modal from 'react-modal';
 import StartScreen from './startScreen'
