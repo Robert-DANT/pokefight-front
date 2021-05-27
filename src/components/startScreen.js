@@ -14,8 +14,8 @@ export default function StartScreen ({setStartScreen}) {
       {/* Content */}
       <div className="VideoContent">
         <div className="Container">
-          <div className='startFont'>
-          <img src="https://fontmeme.com/permalink/210526/d6e962a9abeca391ff743d18f8288629.png" alt="pokemon-font" border={0} />
+          <div className='logo'>
+          <img src="https://fontmeme.com/permalink/210526/d6e962a9abeca391ff743d18f8288629.png" alt="pokemon-font" className='startFont' border={0} />
           </div>
           <div className="start">
             <div>
