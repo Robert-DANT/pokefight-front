@@ -27,7 +27,7 @@ export default function Home() {
     const [opponentPokemon, setOpponentPokemon] = useState()
     const [opponentPokemonPower, setOpponentPokemonPower] = useState()
     const [startScreen, setStartScreen] = useState(true)
-    const [winner, setWinner] = useState()
+    const [winner, setWinner] = useState(false)
     const [winnerData, setWinnerData] = useState()
 
     useEffect(() => {
@@ -53,7 +53,7 @@ export default function Home() {
     };
 
     const fetchWinnerData = async () => {
-        await Axios.get(`https://pokefight-back.herokuapp.com/pokemon/${winner}`)
+        await Axios.get(`https://pokefight-back.herokuapp.com/pokemon/${winner[1]}`)
             .then((response) => setWinnerData(response.data))
             .catch((error) => console.log(error));
     };
@@ -86,9 +86,12 @@ export default function Home() {
     }, [opponentPokemonPower, opponentPokemon]);
 
     const calcWinner = () => {
-        if (ownPokemonPower >= opponentPokemonPower) setWinner(ownPokemon || 'You')
-        else setWinner(opponentPokemon || 'Your Opponent')
+        if (ownPokemonPower >= opponentPokemonPower) setWinner(['You', ownPokemon] || 'You')
+        else setWinner(['Opponent',opponentPokemon] || 'Your Opponent')
     }
+    useEffect(() => {
+      if(winner[1]) fetchWinnerData()
+    }, [winner]);
 
     const startFromBeginning = () => {
         setImg()
@@ -117,12 +120,14 @@ export default function Home() {
         </Modal>
             {!ownPokemon ? <OwnSelectionScreen pokeData={pokeData} img={img} data={data} selectFirstPokemon={selectFirstPokemon} setSelectedPokemon={setSelectedPokemon}/>
             : !opponentPokemon ?
-                <OpponentSelectionScreen pokeData={pokeData} img={img} data={data} selectSecondPokemon={selectSecondPokemon} setSelectedPokemon={setSelectedPokemon} /> :
-                /* Here comes the winner screen */
+                <OpponentSelectionScreen pokeData={pokeData} img={img} data={data} selectSecondPokemon={selectSecondPokemon} setSelectedPokemon={setSelectedPokemon} />
+                : winnerData ?
                 <>
-                <h1>The winner is: {winner}</h1>
+                {/* Here comes the winner screen */}
+                {console.log(winner)}
+                <h1>The winner is: {winner[0]} with {winnerData.name.english}</h1>
                 <button onClick={startFromBeginning} >Start Again :)</button>
-                </>
+                </> : 'fighting...'
                 }
         </>
     )
