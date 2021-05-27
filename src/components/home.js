@@ -114,7 +114,6 @@ export default function Home() {
         <Modal
          closeTimeoutMS={200}
           isOpen={startScreen}
-          /* onAfterOpen={} */
           onRequestClose={(() => setStartScreen(false))}
           style={customStyles}
           contentLabel="Start Screen Modal"
@@ -129,7 +128,6 @@ export default function Home() {
                 <Modal
          closeTimeoutMS={200}
           isOpen={readyScreen}
-          /* onAfterOpen={} */
           onRequestClose={(() => setReadyScreen(false))}
           style={customStyles}
           contentLabel="Ready Screen Modal"
@@ -139,7 +137,7 @@ export default function Home() {
                 {console.log(winner)}
                 <h1>The winner is: {winner[0]} with {winnerData.name.english}</h1>
                 <button onClick={startFromBeginning} >Start Again :)</button>
-                </> : 'fighting...'
+                </> : 'loading...'
                 }
         </>
     )
