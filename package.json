@@ -4,12 +4,15 @@
   "private": true,
   "dependencies": {
     "@blueprintjs/core": "^3.44.3",
+    "@react-three/drei": "^5.2.1",
+    "@react-three/fiber": "^6.2.2",
     "@rebass/forms": "^4.0.6",
     "@rebass/preset": "^4.0.5",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "drei": "^2.2.21",
     "emotion-theming": "^11.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -17,7 +20,10 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-three-fiber": "^6.0.13",
     "rebass": "^4.0.7",
+    "three": "^0.128.0",
+    "three-stdlib": "^2.0.5",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
