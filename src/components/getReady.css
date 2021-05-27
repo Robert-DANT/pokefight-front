@@ -1,5 +1,7 @@
 .readyScreen {
-    background-color: rgb(123, 187, 27);
+    background: linear-gradient(90deg, rgba(21,255,31,1) 0%,rgba(0,113,15,1) 100%);
+    background-size: 400% !important;
+    animation: bg-animation 15s infinite alternate;
     overflow: hidden;
     padding: 0px;
     margin: 0px;
@@ -8,6 +10,19 @@
     overflow: hidden;
     text-align: center;
     justify-content: center;
+}
+
+@keyframes bg-animation {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}
+
+.versus {
+    margin-top: 10% !important;
 }
 
 .readyScreenTitle {
@@ -32,28 +47,25 @@
 }
 
 .myimage1{
-     
-    transition-duration: 1000ms;
-    transition-property: transform;
-    transition-timing-function:cubic-bezier(1, 1, 0, 1);
-    animation: rotated 0.3s linear infinite alternate;
+    animation: rotatedFlipped 0.3s linear infinite alternate;
 }
-/* .myimage1:hover {
-    
-    animation: rotated 1s linear infinite alternate;
-
-} */
 @keyframes rotated {
     0% {
         transform: rotate(15deg);
-
     }
     100%{
         transform: rotate(-15deg);
     }
 }
-.myimage3{
-    
-    animation: rotated 0.35s linear infinite alternate-reverse;
 
+@keyframes rotatedFlipped {
+    0% {
+        transform: rotate(15deg) scaleX(-1);
+    }
+    100%{
+        transform: rotate(-15deg) scaleX(-1);
+    }
+}
+.myimage3{
+    animation: rotated 0.35s linear infinite alternate-reverse;
 }

@@ -1,0 +1,50 @@
+@font-face {font-family: "Pokemon"; 
+    src: url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.eot"); 
+    src: url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.eot?#iefix") format("embedded-opentype"), 
+         url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.woff2") format("woff2"), 
+         url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.woff") format("woff"), 
+         url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.ttf") format("truetype"), 
+         url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.svg#Pokemon") format("svg");
+        } 
+  
+  .winnerIsSection {
+      margin: 0px;
+      padding: 0px;
+      height: 100vh !important;
+      width: 100vw !important;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+background: linear-gradient(-90deg, #FDBB2D 0%, #441c5c 100%);
+background-size: 400% !important; 
+animation: bg-animation 15s infinite alternate;
+  }
+  @keyframes bg-animation {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}
+  
+  .winnerIsSection h1 {
+      font-size: 10vw;
+      text-align: center;
+      /* text-transform: uppercase; */
+      background: url(./img/Pika.png);
+    font-family: 'Pokemon', sans-serif;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: text-background 25s  linear infinite;
+    letter-spacing: 7px;
+  }
+  
+  @keyframes text-background {
+  
+      from { background-position: 0 0 }
+  
+      to { background-position: 100% 100% }
+  
+  } 
