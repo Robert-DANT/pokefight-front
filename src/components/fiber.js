@@ -5,17 +5,17 @@ import { ContactShadows, Environment, OrbitControls } from "@react-three/drei"
 import './fiber.css'
 
 
-function Shoe(props) {
+function Pokeball(props) {
     const ref = useRef()
     const { nodes, materials } = useGLTF("Pokeball_v02.glb") /* shoe-draco.glb */ /* Pokeball_v02.glb */
     console.log(nodes)
     console.log(materials)
     useFrame((state) => {
         const t = state.clock.getElapsedTime()
-        ref.current.rotation.z = -0.2 - (1 + Math.sin(t / 1.5)) / 5
+        ref.current.rotation.z = -0.2 - (1 + Math.sin(t / 1.5)) / 4
         ref.current.rotation.x = Math.cos(t / 4) / 2
         ref.current.rotation.y = Math.sin(t / 4) / 2
-        ref.current.position.y = (1 + Math.sin(t / 1.5)) / 2.5
+        ref.current.position.y = 70*(1 + Math.sin(t / 1.5)) / 2.5
       })
     return (
         <group ref={ref} {...props} dispose={null} >
@@ -40,9 +40,9 @@ export default function Fiber() {
     return (
         <div className="fiberDiv">
             <Canvas camera={{ position: [100, 100, 500], fov: 50 }}>
-                <ambientLight intensity={0.5} />
+                <ambientLight intensity={0.7} />
                 <Suspense fallback={null}>
-                    <Shoe />
+                    <Pokeball />
                 </Suspense>
                 <OrbitControls /* minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} */ enableZoom={false} enablePan={false} />
             </Canvas>
