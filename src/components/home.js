@@ -151,7 +151,7 @@ export default function Home() {
                                 <>
                                     {/*           <h1>The winner is: {winner[0]} with {winnerData.name.english}</h1>
                                     <button onClick={startFromBeginning} >Start Again :)</button> */}
-                                    <Winner winner={winner} name={winnerData.name.english} startFromBeginning={startFromBeginning} />
+                                    <Winner winner={winner} name={winnerData.name.english} startFromBeginning={startFromBeginning} opponentPokemonPower={opponentPokemonPower} ownPokemonPower={ownPokemonPower}/>
                                 </>
                                 : 'loading...'
             }

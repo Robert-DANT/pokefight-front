@@ -9,6 +9,29 @@
          url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.svg#Pokemon") format("svg");
         } 
 
+.leaderboard {
+  position: absolute;
+  top: 35%;
+  left: 10%;
+  bottom: 50%;
+}
+
+.saveButton {
+  background-color: transparent !important;
+}
+
+.inputName {
+  text-align: center;
+  width: 50px;
+  background-color: transparent;
+}
+
+.saveScore {
+  position: absolute;
+  top: 35%;
+  right: 10%;
+  bottom: 50%;
+}
 
 .startAgainButton {
 cursor: pointer;
