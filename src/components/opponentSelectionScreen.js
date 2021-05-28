@@ -2,6 +2,7 @@ import { Label, Select } from '@rebass/forms'
 import { Box, Text, Flex } from 'rebass'
 import pokeball from './img/pokeball.png'
 import chooseOppImg from './img/chooseOpp.png'
+import Fiber from './fiber'
 import './home.css'
 import './font.css'
 
@@ -60,7 +61,7 @@ export default function OwnSelectionScreen ({pokeData, img, data, setSelectedPok
                     <Text p={1} color='background' bg='primary'>
                         <br />
                             {img && pokeData.name ? <><h1 className='pokefont'>{pokeData.name.english}</h1> <img src={img} className='pokeImg2' a={pokeData.name.english} /> </>
-                            : <img src={pokeball} className='pokeBall' a='pokeball' />}
+                            : /* <img src={pokeball} className='pokeBall' a='pokeball' /> */ <Fiber />}
                         </Text>
                     </Box>
                 </Flex>
