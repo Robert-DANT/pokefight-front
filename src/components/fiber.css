@@ -1,7 +1,10 @@
 .fiberDiv {
     margin: 0;
+    margin-top: 10px;
     padding: 0;
-    width: 100vw;
+    position: static;
+    z-index: 0;
+    width: 35vw;
     height: 100vh;
     overflow: hidden;
 }

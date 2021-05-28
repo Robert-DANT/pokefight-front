@@ -5,6 +5,11 @@
   margin: 0;
 }
 
+.fiberStart {
+  position: absolute;
+  z-index: 1;
+}
+
 /*
     Video BG
 */
@@ -69,6 +74,11 @@
 }
 .start h1 {
   animation: animatedtext 1s linear infinite alternate;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgb(80, 112, 255), 0 0 20px rgb(80, 112, 255), 0 0 30px rgb(80, 112, 255), 0 0 40px rgb(80, 112, 255), 0 0 50px rgb(80, 112, 255), 0 0 60px rgb(80, 112, 255), 0 0 70px rgb(80, 112, 255);
+  color: white;
+  position: relative;
+  z-index: 99999;
 }
 /*
     logo
@@ -110,6 +120,12 @@
 
 .logo img {
   animation: animateLogo 10s linear infinite;
+  position: relative;
+  z-index: 99999;
+}
+.ball {
+  position: relative;
+  z-index: 99999;
 }
 
 /*Media*/
