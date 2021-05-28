@@ -20,34 +20,20 @@ const fetchImg = async () => {
 
     return(
       <section className="videoBg">
-      {/* Video */}
       <div className="videoPlace">
         <video src={video} autoPlay muted loop className="VideoSection" />
       </div>
-      {/* Overlay */}
-{/*       <div className="VideoOverlay" /> */}
-      {/* Content */}
       <div className="VideoContent">
         <div className="Container">
           <div>
             {winner[0] == 'You' ? <p className="pokefontWinner">Your {name} Wins!</p> :
-            <p className="pokefontWinner"> Your Opponent {name} Wins!</p>}
+            <p className="pokefontWinner"> Your Opponent's {name} Wins!</p>}
           </div>
           <div>
-
          <img src={img} width="500px" height="500px"  />
-{/*             <div>
-              <img className="ball" src={ball} />
-            </div>
-            <div>
-              <h1>Click to start</h1>
-            </div>
-            <div>
-              <img className="ball" src={ball} />
-            </div> */}
           </div>
           <div>
-          <button className="pokefontStart startAgainButton" onClick={startFromBeginning} >Start Over :)</button>
+          <button className="pokefontStart startAgainButton" onClick={startFromBeginning} >Start Over</button>
           </div>
         </div>
       </div>

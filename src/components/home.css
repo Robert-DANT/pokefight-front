@@ -20,7 +20,46 @@
     margin-top: 0px;
 }
 
+.pokeImg:hover {
+    animation: rotatedFlipped2 2s linear infinite alternate;
+}
+
+@keyframes rotatedFlipped2 {
+    0% {
+        transform: rotate(0deg) scaleX(-1);
+    }
+    33% {
+        transform: rotate(-15deg) scaleX(-1);
+    }
+    100% {
+        transform: rotate(15deg) scaleX(-1);
+    }
+}
+
+.pokeImg2 {
+    height: 30vw;
+    margin-top: 0px;
+}
+
+.pokeImg2:hover {
+    animation: rotated2 2s linear infinite alternate;
+}
+
+@keyframes rotated2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    33% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(15deg);
+    }
+}
+
 .pokeBall {
+    height: 30vw;
+    margin-top: 0px;
     animation: shake 1.25s cubic-bezier(.36,.07,.19,.97) infinite;
 }
 @keyframes shake {
