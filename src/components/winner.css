@@ -16,6 +16,16 @@
   bottom: 50%;
 }
 
+.saveButton {
+  background-color: transparent !important;
+}
+
+.inputName {
+  text-align: center;
+  width: 50px;
+  background-color: transparent;
+}
+
 .saveScore {
   position: absolute;
   top: 35%;

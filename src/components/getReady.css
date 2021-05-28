@@ -22,7 +22,10 @@
 }
 
 .versus {
-    margin-top: 10% !important;
+    margin-top: -32% !important;
+    position: relative;
+    z-index: 2;
+    font-size: 50px !important;
 }
 
 .readyScreenTitle {
@@ -35,6 +38,8 @@
     transition-property: transform;
     transition-timing-function: ease;
     animation: spin 0.05s linear infinite;
+    position: relative;
+    z-index: 0;
 }
 @keyframes spin {
     0% {

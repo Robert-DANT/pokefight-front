@@ -7,12 +7,16 @@ import Axios from 'axios'
 export default function Winner ({name, winner, startFromBeginning, opponentPokemonPower, ownPokemonPower}) {
   const [img, setImg] = useState()
   const [leaderboard, setLeaderboard] = useState()
+  const [userName, setUserName] = useState('')
+  const queryString = require('query-string');
+  const [saved, setSaved] = useState(false)
 
   useEffect(() => {
     fetchImg()
     fetchLeadb()
     console.log(winner[1])
 }, []);
+
 
 const fetchImg = async () => {
   await Axios.get(`https://pokeapi.co/api/v2/pokemon/${winner[1]}`)
@@ -25,6 +29,20 @@ const fetchLeadb = async () => {
       .then((response) => setLeaderboard(response.data))
       .catch((error) => console.log(error));
 };
+
+const addScore = async () => {
+  let scoreData = queryString.stringify({name: userName, score: ownPokemonPower-opponentPokemonPower})
+  await Axios.post(`https://pokefight-leaderboard.herokuapp.com/leaderboard`, scoreData)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error.data));
+  fetchLeadb()
+};
+
+const saveScore = () => {
+  console.log('saving ...')
+  addScore()
+  setSaved(true)
+}
 
     return(
       <section className="videoBg">
@@ -39,11 +57,12 @@ const fetchLeadb = async () => {
           </div>
           <div className='leaderboard pokefont'>
             Leaderboard: <br/>
-            {leaderboard && <>1. {leaderboard[0].name} {leaderboard[0].score} <br/>
+            {leaderboard && <>
+            1. {leaderboard[0].name} {leaderboard[0].score} <br/>
             2. {leaderboard[1].name} {leaderboard[1].score} <br/>
             3. {leaderboard[2].name} {leaderboard[2].score} <br/>
-            {leaderboard[4] && <>4. {leaderboard[3].name} {leaderboard[3].score} <br/>
-            5. {leaderboard[4].name} {leaderboard[4].score} <br/> </>}
+            4. {leaderboard[3].name} {leaderboard[3].score} <br/>
+            5. {leaderboard[4].name} {leaderboard[4].score} <br/>
             </>}
           </div>
           <div>
@@ -51,10 +70,12 @@ const fetchLeadb = async () => {
           </div>
           <div className='saveScore pokefont'>
             Your Score is {ownPokemonPower-opponentPokemonPower}! <br/>
-            
+            <input className='inputName pokefont' onChange={((e) => setUserName(e.target.value))} placeholder='Name' maxlength = "3"/>
+            <br/>
+            <button onClick={saveScore} className='pokefont startAgainButton saveButton' disabled={saved}>{!saved ? 'Save Score' : 'Saved!'}</button>
           </div>
           <div>
-          <button className="pokefontStart startAgainButton" onClick={startFromBeginning} >Start Over</button>
+          <button className="pokefontStart startAgainButton" onClick={startFromBeginning}>Start Over</button>
           </div>
         </div>
       </div>
