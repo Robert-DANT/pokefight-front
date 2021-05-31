@@ -57,13 +57,13 @@ const saveScore = () => {
           </div>
           <div className='leaderboard pokefont'>
             Leaderboard: <br/>
-            {leaderboard && <>
+            {leaderboard ? <>
             1. {leaderboard[0].name} {leaderboard[0].score} <br/>
             2. {leaderboard[1].name} {leaderboard[1].score} <br/>
             3. {leaderboard[2].name} {leaderboard[2].score} <br/>
             4. {leaderboard[3].name} {leaderboard[3].score} <br/>
             5. {leaderboard[4].name} {leaderboard[4].score} <br/>
-            </>}
+            </> : 'Loading Scores ...'}
           </div>
           <div>
          <img src={img} width="400px" height="400px"  />
