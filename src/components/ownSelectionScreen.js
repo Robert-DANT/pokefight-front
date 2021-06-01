@@ -2,7 +2,7 @@ import { Label, Select } from '@rebass/forms'
 import { Box, Text, Flex } from 'rebass'
 import pokeball from './img/pokeball.png'
 import chooseOwnImg from './img/chooseOwn.png'
-import Fiber from './fiber'
+import Fiber from './fiber1'
 import './home.css'
 import './font.css'
 
