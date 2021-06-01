@@ -1,25 +1,25 @@
 import React, { useRef, useState, Suspense } from 'react'
-import { Canvas, useFrame } from 'react-three-fiber'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei/core/useGLTF'
 import { ContactShadows, Environment, OrbitControls } from "@react-three/drei"
 import './fiber.css'
 
 
 function Pokeball(props) {
-    const ref = useRef()
+    const mesh = useRef()
     const { nodes, materials } = useGLTF("/pokeball4.gltf")
     console.log(nodes)  
     console.log(materials)
     useFrame((state) => {
         const t = state.clock.getElapsedTime()
-        ref.current.rotation.z = -0.2 - (1 + Math.sin(t / 1.5)) / 1
-        ref.current.rotation.x = -(Math.cos(t / 4)) / 0.5
-        ref.current.rotation.y = -(Math.sin(t / 4)) / 0.5
-        ref.current.position.y = (1 + Math.sin(t / 1.5)) / 3
+        mesh.current.rotation.z = -0.2 - (1 + Math.sin(t / 1.5)) / 1
+        mesh.current.rotation.x = -(Math.cos(t / 4)) / 0.5
+        mesh.current.rotation.y = -(Math.sin(t / 4)) / 0.5
+        mesh.current.position.y = (1 + Math.sin(t / 1.5)) / 3
       })
 
     return (
-        <group ref={ref} {...props} dispose={null}>
+        <group ref={mesh} {...props} dispose={null}>
             <group scale={[0.8, 0.8, 0.8]}>
             <mesh geometry={nodes.pin_1.geometry} material={materials.white1} />
             <mesh geometry={nodes.pin_2.geometry} material={materials.black} />
