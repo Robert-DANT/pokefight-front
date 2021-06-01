@@ -21,7 +21,6 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-three-fiber": "^6.0.13",
     "rebass": "^4.0.7",
     "three": "^0.128.0",
     "three-stdlib": "^2.0.5",
