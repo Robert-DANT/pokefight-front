@@ -13,6 +13,9 @@
 
 .flipped {
     transform: scaleX(-1);
+    height: 300px !important;
+    margin-left: 50px !important;
+    margin-bottom: -50px !important;
 }
 
 /* @keyframes bg-animation {
@@ -29,8 +32,8 @@
 
     margin-bottom: 20px;
     position:absolute;
-    /* top:15px; */
-    right: 0%;
+    top: 50px;
+    right: 15%;
     margin-right: 5%;
 }
 
@@ -49,36 +52,46 @@
 
 .button2{
     position:absolute;
-    bottom:30px;
-    left: 20%;
-    
-  
+    bottom:150px;
+    left: 21%;
+    width: 170px;
+    height: 40px;
 }
 button:hover {
     background-color:tomato;
-    
   }
 
 .button1{
     position:absolute;
+    bottom: 110px;
+    left: 21%;
+    width: 170px;
+    height: 40px;
+}
+.button3{
+    position:absolute;
     bottom: 70px;
-    left: 20%;
-    
+    left: 21%;
+    width: 170px;
+    height: 40px;
 }
 
 button {
     background-color: #e2b00a;
     border: none;
     color: white;
-    padding: 15px 32px;
+    /* padding: 15px 32px; */
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    margin-bottom: 50px !important;
-    margin-left: 30px !important;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+      background-color: grey;
   }
 
   .progress {
