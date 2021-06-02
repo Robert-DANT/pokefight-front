@@ -14,7 +14,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
     const [recharge, setRecharge] = useState(false)
     const [spCharges, setSpCharges] = useState(4)
 
-    const attackRate = 20000
+    const attackRate = 30000
 
     useEffect(() => {
         fetchImg1()
@@ -101,7 +101,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
         if (opponentData && playerData) {  
         const interval = setInterval(() => {
                 oppSpecDefense()
-            }, (2*attackRate/opponentData.base.Speed));
+            }, (3*attackRate/opponentData.base.Speed));
             return () => clearInterval(interval)
         }
     }, [opponentData, opponentHp]);
