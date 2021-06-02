@@ -1,0 +1,82 @@
+body{
+    background:url('https://cdn.pixabay.com/photo/2019/01/17/22/02/moss-3938746_960_720.jpg') no-repeat center center fixed;
+    
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    overflow: hidden;
+    
+}
+
+@keyframes bg-animation {
+    0% {
+        background-position: left;
+    }
+    100%{
+        background-position: right;
+    }
+}
+
+
+.player2{
+    
+    margin-bottom: 20px;
+
+    position:absolute;
+    /* top:15px; */
+    right: 0%;
+    
+   
+    
+}
+
+.player1{
+
+    position:absolute;
+    bottom:30px;
+    left: 12%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+
+
+}
+
+.button2{
+    position:absolute;
+    bottom:30px;
+    left: 20%;
+    
+  
+}
+button:hover {
+    background-color:tomato;
+    
+  }
+
+.button1{
+    position:absolute;
+    bottom: 70px;
+    left: 20%;
+    
+}
+
+button {
+    background-color: #e2b00a;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .progress {
+    
+    background-color: rgb(216, 196, 14);
+    position: relative;
+  }

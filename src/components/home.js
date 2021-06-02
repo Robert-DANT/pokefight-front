@@ -32,6 +32,7 @@ export default function Home() {
     const [startScreen, setStartScreen] = useState(true)
     const [readyScreen, setReadyScreen] = useState(true)
     const [winnerIsScreen, setWinnerIsScreen] = useState(true)
+    const [battleScreen, setBattleScreen] = useState(true)
     const [winner, setWinner] = useState(false)
     const [winnerData, setWinnerData] = useState()
 
@@ -138,7 +139,12 @@ export default function Home() {
                             >
                                 <GetReadyScreen setReadyScreen={setReadyScreen} ownPokemon={ownPokemon} opponentPokemon={opponentPokemon} />
                             </Modal>
-                        </> : !readyScreen && winnerIsScreen ?
+                        </> : !readyScreen && battleScreen ?
+                        
+                        <><Modal></Modal></>
+                        
+                        
+                        : !battleScreen && winnerIsScreen ?
                             <Modal
                                 closeTimeoutMS={200}
                                 isOpen={winnerIsScreen}
