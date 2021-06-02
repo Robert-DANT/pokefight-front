@@ -1,34 +1,37 @@
-body{
-    background:url('https://cdn.pixabay.com/photo/2019/01/17/22/02/moss-3938746_960_720.jpg') no-repeat center center fixed;
-    
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+
+.battleDiv {
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
-    
+    background:url('./img/battle_forest.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-align: center;
 }
 
-@keyframes bg-animation {
+.flipped {
+    transform: scaleX(-1);
+}
+
+/* @keyframes bg-animation {
     0% {
         background-position: left;
     }
     100%{
         background-position: right;
     }
-}
+} */
 
 
 .player2{
-    
-    margin-bottom: 20px;
 
+    margin-bottom: 20px;
     position:absolute;
     /* top:15px; */
     right: 0%;
-    
-   
-    
+    margin-right: 5%;
 }
 
 .player1{
@@ -39,7 +42,8 @@ body{
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
-
+    margin-bottom: 50px;
+    margin-left: 30px;
 
 }
 
@@ -73,6 +77,8 @@ button {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    margin-bottom: 50px !important;
+    margin-left: 30px !important;
   }
 
   .progress {

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Axios from 'axios'
 /* import './font.css' */
 
-export default function Winner ({name, winner, startFromBeginning, opponentPokemonPower, ownPokemonPower}) {
+export default function Winner ({name, winner, startFromBeginning, winnerScore}) {
   const [img, setImg] = useState()
   const [leaderboard, setLeaderboard] = useState()
   const [userName, setUserName] = useState('')
@@ -31,7 +31,7 @@ const fetchLeadb = async () => {
 };
 
 const addScore = async () => {
-  let scoreData = queryString.stringify({name: userName, score: ownPokemonPower-opponentPokemonPower})
+  let scoreData = queryString.stringify({name: userName, score: winnerScore})
   await Axios.post(`https://pokefight-leaderboard.herokuapp.com/leaderboard`, scoreData)
     .then((response) => console.log(response.data))
     .catch((error) => console.log(error.data));
@@ -69,7 +69,7 @@ const saveScore = () => {
          <img src={img} width="400px" height="400px"  />
           </div>
           <div className='saveScore pokefont'>
-            Your Score is {ownPokemonPower-opponentPokemonPower}! <br/>
+            Your Score is {winnerScore}! <br/>
             <input className='inputName pokefont' onChange={((e) => setUserName(e.target.value))} placeholder='Name' maxlength = "3"/>
             <br/>
             <button onClick={saveScore} className='pokefont startAgainButton saveButton' disabled={saved}>{!saved ? 'Save Score' : 'Saved!'}</button>
