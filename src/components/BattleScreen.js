@@ -14,7 +14,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
     const [recharge, setRecharge] = useState(false)
     const [spCharges, setSpCharges] = useState(4)
 
-    const attackRate = 30000
+    const attackRate = 50000
 
     useEffect(() => {
         fetchImg1()
