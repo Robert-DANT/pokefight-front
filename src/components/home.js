@@ -8,6 +8,7 @@ import OpponentSelectionScreen from './opponentSelectionScreen'
 import GetReadyScreen from './getReadyScreen'
 import WinnerIsScreen from './winnerIsScreen'
 import Winner from './winner'
+import Battle from './BattleScreen'
 
 const customStyles = {
     content: {
@@ -35,6 +36,7 @@ export default function Home() {
     const [battleScreen, setBattleScreen] = useState(true)
     const [winner, setWinner] = useState(false)
     const [winnerData, setWinnerData] = useState()
+    const [winnerScore, setWinnerScore] = useState(false)
 
     useEffect(() => {
         fetchData();
@@ -85,14 +87,14 @@ export default function Home() {
         setPokeData('')
         /* setSelectedPokemon('') */
     }
-    useEffect(() => {
+/*     useEffect(() => {
         console.log(`Own Power: ${ownPokemonPower}`)
         console.log(`Opponent Power: ${opponentPokemonPower}`)
         calcWinner()
-    }, [opponentPokemonPower, opponentPokemon]);
+    }, [opponentPokemonPower, opponentPokemon]); */
 
-    const calcWinner = () => {
-        if (ownPokemonPower >= opponentPokemonPower) setWinner(['You', ownPokemon] || 'You')
+    const calcWinner = (winner) => {
+        if (winner == 1) setWinner(['You', ownPokemon] || 'You')
         else setWinner(['Opponent', opponentPokemon] || 'Your Opponent')
     }
     useEffect(() => {
@@ -111,6 +113,7 @@ export default function Home() {
         setStartScreen(true)
         setReadyScreen(true)
         setWinnerIsScreen(true)
+        setBattleScreen(true)
     }
 
 
@@ -128,7 +131,7 @@ export default function Home() {
             {!ownPokemon ? <OwnSelectionScreen pokeData={pokeData} img={img} data={data} selectFirstPokemon={selectFirstPokemon} setSelectedPokemon={setSelectedPokemon} />
                 : !opponentPokemon ?
                     <OpponentSelectionScreen pokeData={pokeData} img={img} data={data} selectSecondPokemon={selectSecondPokemon} setSelectedPokemon={setSelectedPokemon} />
-                    : winnerData && readyScreen ?
+                    : readyScreen ?
                         <>
                             <Modal
                                 closeTimeoutMS={200}
@@ -140,11 +143,14 @@ export default function Home() {
                                 <GetReadyScreen setReadyScreen={setReadyScreen} ownPokemon={ownPokemon} opponentPokemon={opponentPokemon} />
                             </Modal>
                         </> : !readyScreen && battleScreen ?
-                        
-                        <><Modal></Modal></>
-                        
-                        
-                        : !battleScreen && winnerIsScreen ?
+                        <><Modal closeTimeoutMS={200}
+                        isOpen={battleScreen}
+                        onRequestClose={(() => setBattleScreen(false))}
+                        style={customStyles}
+                        contentLabel="Battle Screen Modal">
+                            <Battle setBattleScreen={setBattleScreen} ownPokemon={ownPokemon} opponentPokemon={opponentPokemon} calcWinner={calcWinner} setWinnerScore={setWinnerScore}/>
+                            </Modal></>
+                    : !battleScreen && winnerIsScreen ?
                             <Modal
                                 closeTimeoutMS={200}
                                 isOpen={winnerIsScreen}
@@ -157,7 +163,7 @@ export default function Home() {
                                 <>
                                     {/*           <h1>The winner is: {winner[0]} with {winnerData.name.english}</h1>
                                     <button onClick={startFromBeginning} >Start Again :)</button> */}
-                                    <Winner winner={winner} name={winnerData.name.english} startFromBeginning={startFromBeginning} opponentPokemonPower={opponentPokemonPower} ownPokemonPower={ownPokemonPower}/>
+                                    <Winner winner={winner} name={winnerData.name.english} startFromBeginning={startFromBeginning} winnerScore={winnerScore}/>
                                 </>
                                 : 'loading...'
             }
