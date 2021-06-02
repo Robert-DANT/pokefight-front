@@ -1,16 +1,28 @@
 .readyScreen {
-    background: linear-gradient(90deg, rgba(21,255,31,1) 0%,rgba(0,113,15,1) 100%);
+/*     background: linear-gradient(90deg, rgba(21,255,31,1) 0%,rgba(0,113,15,1) 100%);
     background-size: 400% !important;
-    animation: bg-animation 15s infinite alternate;
-    overflow: hidden;
+    animation: bg-animation 15s infinite alternate; */
     padding: 0px;
     margin: 0px;
     height: 100vh !important;
     width: 100vw !important;
-    overflow: hidden;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    object-fit: cover;
     justify-content: center;
 }
+
+/*Video  section */
+.VideoSection {
+    position: absolute;
+    width: 100% !important;
+    height: 100vh !important;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: 0;
+  }
 
 @keyframes bg-animation {
     0% {
@@ -28,8 +40,15 @@
     font-size: 50px !important;
 }
 
+.pokeName {
+    position: relative;
+    z-index: 1;
+}
+
 .readyScreenTitle {
     margin-top: 50px !important;
+    position: relative;
+    z-index: 1;
 }
 
 .myimage2{
@@ -39,7 +58,7 @@
     transition-timing-function: ease;
     animation: spin 0.05s linear infinite;
     position: relative;
-    z-index: 0;
+    z-index: 1;
 }
 @keyframes spin {
     0% {

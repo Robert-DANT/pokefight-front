@@ -4,9 +4,10 @@ import Starburst from './img/starburst.png'
 import ReadyScreenTitle from './img/readyscreentitle.png'
 import './getReady.css';
 import './font.css'
-import {Box,Card,Image,Heading,Text,Flex} from 'rebass'
+import { Box, Card, Image, Heading, Text, Flex } from 'rebass'
+import video from './img/versus_screen.mp4'
 
-export default function GetReady({setReadyScreen, ownPokemon, opponentPokemon}) {
+export default function GetReady({ setReadyScreen, ownPokemon, opponentPokemon }) {
     const [pokeData1, setPokeData1] = useState()
     const [pokeData2, setPokeData2] = useState()
     const [img1, setImg1] = useState()
@@ -48,37 +49,40 @@ export default function GetReady({setReadyScreen, ownPokemon, opponentPokemon}) 
 
     return (
         <section className='readyScreen' onClick={(() => setReadyScreen(false))}>
+
+                <video src={video} autoPlay muted loop className="VideoSection" />
+
             <div className='readyScreenTitle'><Image src={ReadyScreenTitle} /></div>
             <br></br>
-                <br></br>
-                    <Flex flexWrap='wrap' mx={-2}>
-                        <Box width={1 / 3} px={2}>
-                            <div className='myimage1'>
-                                <Image src={img1}
-                                    sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
-                            </div>
-                            <Heading as='h3'>
-                            <p className='pokefont'>{pokeData1 && pokeData1.name.english}</p>
-                            </Heading>
-                        </Box>
-                        <Box width={1 / 3} px={2}>
-                            <div className='myimage2'>
-                                <Image src={Starburst} sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
-                            </div>
-                            <Heading as='h3'className='versus'>
-                            <p className='pokefont'>{'VS'}</p>
-                            </Heading>
-                        </Box>
-                        <Box width={1 / 3} px={2}>
-                            <div className='myimage3'>
-                                <Image src={img2}
-                                    sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
-                            </div>
-                            <Heading as='h3'>
-                            <p className='pokefont'>{pokeData2 && pokeData2.name.english}</p>
-                            </Heading>
-                        </Box>
-                    </Flex>
+            <br></br>
+            <Flex flexWrap='wrap' mx={-2}>
+                <Box width={1 / 3} px={2}>
+                    <div className='myimage1'>
+                        <Image src={img1}
+                            sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
+                    </div>
+                    <Heading as='h3'>
+                        <p className='pokefont pokeName'>{pokeData1 && pokeData1.name.english}</p>
+                    </Heading>
+                </Box>
+                <Box width={1 / 3} px={2}>
+                    <div className='myimage2'>
+                        <Image src={Starburst} sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
+                    </div>
+                    <Heading as='h3' className='versus'>
+                        <p className='pokefont'>{'VS'}</p>
+                    </Heading>
+                </Box>
+                <Box width={1 / 3} px={2}>
+                    <div className='myimage3'>
+                        <Image src={img2}
+                            sx={{ width: ['100%', '50%'], borderRadius: 8, }} />
+                    </div>
+                    <Heading as='h3'>
+                        <p className='pokefont pokeName'>{pokeData2 && pokeData2.name.english}</p>
+                    </Heading>
+                </Box>
+            </Flex>
         </section>
     )
 }

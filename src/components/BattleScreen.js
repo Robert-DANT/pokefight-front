@@ -12,6 +12,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
     const [playerHp, setPlayerHp] = useState(100)
     const [opponentHp, setOpponentHp] = useState(100)
     const [recharge, setRecharge] = useState(false)
+    const [spCharges, setSpCharges] = useState(4)
 
     const attackRate = 20000
 
@@ -29,6 +30,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
         }
     }, [playerData, opponentData])
 
+    /* All fetching Data Functions */
 
     const fetchImg1 = async () => {
         await Axios.get(`https://pokeapi.co/api/v2/pokemon/${ownPokemon}`)
@@ -53,6 +55,8 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
             .catch((error) => console.log(error));
     };
 
+   /*  All Attack / Defense Funtions */
+
     const normalAttack = () => {
         setRecharge(true)
         let calculatedHp = Math.floor(opponentHp - (10 * playerData.base.Attack / opponentData.base.Defense))
@@ -65,16 +69,25 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
     }
 
     const specDefense = () => {
+        setRecharge(true)
         let calculatedHp = Math.ceil(playerHp + (playerData.base['Sp. Defense']/3))
         if (calculatedHp > playerData.base.HP) setPlayerHp(playerData.base.HP)
         else setPlayerHp(calculatedHp)
     }
 
     const oppSpecDefense = () => {
-        let calculatedHp = Math.ceil(opponentHp + (opponentData.base['Sp. Defense']/5))
+        let calculatedHp = Math.ceil(opponentHp + (opponentData.base['Sp. Defense']/6))
         if (calculatedHp > opponentData.base.HP) setOpponentHp(opponentData.base.HP)
         else setOpponentHp(calculatedHp)
     }
+
+    const specAttack = () => {
+        setRecharge(true)
+        let calculatedHp = Math.floor(opponentHp - (10 * (playerData.base.Attack+playerData.base['Sp. Attack']) / opponentData.base.Defense))
+        setOpponentHp(calculatedHp)
+        setSpCharges(spCharges-1)
+    }
+/* Opponent Use Effects */
 
     useEffect(() => {
         if (opponentData && playerData) {  
@@ -92,7 +105,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
             return () => clearInterval(interval)
         }
     }, [opponentData, opponentHp]);
-
+/* Recharge Player Buttons Use Effect */
     useEffect(() => {
         if (opponentData && playerData) {
         const interval = setInterval(() => {
@@ -101,7 +114,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
             return () => clearInterval(interval)
         }
     }, [recharge]);
-
+/* Checking if Winner Use Effect */
     useEffect(() => {
         if (opponentHp <= 0) {
             calcWinner(1)
@@ -123,7 +136,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
                 <Box width={2 / 3} px={2}>
                     <div className='player1'>
                         <Image src={img1}
-                            sx={{ width: ['50vw', '100%'] }} className='flipped ' />
+                            sx={{ width: ['50vw', '100%'] }} className='flipped' />
                         <p className='pokefont' as='h3'>{playerData && playerData.name.english}</p>
                         <div className='progressbar'>
                             {/* Start first Progress Bar */}
@@ -134,7 +147,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
                             {/* Here Starts Special Attack PB */}
                             <div>
                                 <label for="file" className='pokefont' style={{ color: "yellow" }}>SA: </label>
-                                <progress id="file" value="32" max="32" />
+                                <progress id="file" value={spCharges} max="4" />
                             </div>
                         </div>
                     </div>
@@ -144,7 +157,10 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
                         <Button onClick={normalAttack} disabled={recharge}>Normal Attack</Button>
                     </div>
                     <div className='button2'>
-                        <Button onClick={specDefense}>Heal</Button>
+                        <Button onClick={specDefense} disabled={recharge}>Heal</Button>
+                    </div>
+                    <div className='button3'>
+                        <Button onClick={specAttack} disabled={recharge || spCharges==0}>Special Attack</Button>
                     </div>
                 </Box>
                 <Box width={2 / 3} px={2}>
