@@ -71,7 +71,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
     }
 
     const oppSpecDefense = () => {
-        let calculatedHp = Math.ceil(opponentHp + (opponentData.base['Sp. Defense']/10))
+        let calculatedHp = Math.ceil(opponentHp + (opponentData.base['Sp. Defense']/5))
         if (calculatedHp > opponentData.base.HP) setOpponentHp(opponentData.base.HP)
         else setOpponentHp(calculatedHp)
     }
@@ -79,12 +79,19 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
     useEffect(() => {
         if (opponentData && playerData) {  
         const interval = setInterval(() => {
-                /* oppAttack() */
-                oppSpecDefense()
+                oppAttack()
             }, (attackRate/opponentData.base.Speed));
             return () => clearInterval(interval)
         }
     }, [opponentData, playerHp]);
+    useEffect(() => {
+        if (opponentData && playerData) {  
+        const interval = setInterval(() => {
+                oppSpecDefense()
+            }, (2*attackRate/opponentData.base.Speed));
+            return () => clearInterval(interval)
+        }
+    }, [opponentData, opponentHp]);
 
     useEffect(() => {
         if (opponentData && playerData) {
