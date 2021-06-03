@@ -75,6 +75,8 @@ export default function StartScreen({ setStartScreen, token, setToken }) {
       }
       else {
         alert('User Created! Please Login now :)')
+        setLogin(true)
+        setRegister(false)
       }
     })
   }
@@ -122,7 +124,7 @@ export default function StartScreen({ setStartScreen, token, setToken }) {
         style={customStyles}
         contentLabel="Start Screen Modal"
       >
-        <div className='loginScreen' /* onClick={(() => setStartScreen(false))} */>
+        <div className='loginScreen'>
           <h2>Please Login or Register</h2>
           <button onClick={(() => {
             setLogin(!login)
@@ -133,17 +135,17 @@ export default function StartScreen({ setStartScreen, token, setToken }) {
             setLogin(false)
           })}>Register</button>
           {login ?
-            <>
+            <><h3>Login:</h3>
               <form onSubmit={handleLogin} id='loginForm'>
                 <label for="email">Email:</label><br />
                 <input onChange={((e) => setEmail(e.target.value))} type="email" id="email" name="email" required /><br />
                 <label for="password">Password:</label><br />
                 <input onChange={((e) => setPw(e.target.value))} type="password" id="password" name="password" required /><br /><br />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Login" />
               </form>
             </>
             : register ?
-              <>
+              <><h3>Register:</h3>
                 <form onSubmit={handleRegister} id='registerForm'>
                   <label for="name">Name:</label><br />
                   <input onChange={((e) => setName(e.target.value))} type="text" id="name" name="name" required /><br />
@@ -151,7 +153,7 @@ export default function StartScreen({ setStartScreen, token, setToken }) {
                   <input onChange={((e) => setEmail(e.target.value))} type="email" id="email" name="email" required /><br />
                   <label for="password">Password:</label><br />
                   <input onChange={((e) => setPw(e.target.value))} type="password" id="password" name="password" required /><br /><br />
-                  <input type="submit" value="Submit" />
+                  <input type="submit" value="Register" />
                 </form>
               </>
               : ''}

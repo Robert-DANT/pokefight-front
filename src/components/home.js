@@ -166,7 +166,7 @@ export default function Home() {
                                     <button onClick={startFromBeginning} >Start Again :)</button> */}
                                     <Winner winner={winner} name={winnerData.name.english} startFromBeginning={startFromBeginning} winnerScore={winnerScore}/>
                                 </>
-                                : 'loading...'
+                                : 'oops, something went really wrong :('
             }
         </>
     )
