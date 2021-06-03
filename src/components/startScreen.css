@@ -56,6 +56,41 @@
   position: static;
 }
 
+.loginScreen {
+  text-align: center;
+}
+
+.loginScreen input {
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 200px;
+  outline: none;
+  margin-bottom: 5px;
+}
+
+.loginScreen button {
+  border: 2px solid black;
+  color: black;
+  margin: 5px;
+  padding: 3px 25px;
+  border-radius: 5px;
+}
+
+.loginScreen button:hover {
+  background-color: lightcoral !important;
+}
+
+
+.submitButton {
+  cursor: pointer;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: chartreuse;
+}
+.submitButton:hover {
+  background-color: lightcoral;
+}
+
 .Container {
   width: 90%;
   margin: 0 auto !important;

@@ -129,31 +129,31 @@ export default function StartScreen({ setStartScreen, token, setToken }) {
           <button onClick={(() => {
             setLogin(!login)
             setRegister(false)
-          })}>Login</button>
+          })} style={{backgroundColor: login ? 'lightcoral' : 'chartreuse'}}>Login</button>
           <button onClick={(() => {
             setRegister(!register)
             setLogin(false)
-          })}>Register</button>
+          })}  style={{backgroundColor: register ? 'lightcoral' : 'chartreuse'}}>Register</button>
           {login ?
-            <><h3>Login:</h3>
-              <form onSubmit={handleLogin} id='loginForm'>
+            <>
+              <form onSubmit={handleLogin} id='loginForm' autocomplete="off">
                 <label for="email">Email:</label><br />
                 <input onChange={((e) => setEmail(e.target.value))} type="email" id="email" name="email" required /><br />
                 <label for="password">Password:</label><br />
-                <input onChange={((e) => setPw(e.target.value))} type="password" id="password" name="password" required /><br /><br />
-                <input type="submit" value="Login" />
+                <input onChange={((e) => setPw(e.target.value))} type="password" id="password" name="password" required /><br />
+                <input type="submit" value="Login" className='submitButton' />
               </form>
             </>
             : register ?
-              <><h3>Register:</h3>
-                <form onSubmit={handleRegister} id='registerForm'>
+              <>
+                <form onSubmit={handleRegister} id='registerForm' autocomplete="off">
                   <label for="name">Name:</label><br />
                   <input onChange={((e) => setName(e.target.value))} type="text" id="name" name="name" required /><br />
                   <label for="email">Email:</label><br />
                   <input onChange={((e) => setEmail(e.target.value))} type="email" id="email" name="email" required /><br />
                   <label for="password">Password:</label><br />
-                  <input onChange={((e) => setPw(e.target.value))} type="password" id="password" name="password" required /><br /><br />
-                  <input type="submit" value="Register" />
+                  <input onChange={((e) => setPw(e.target.value))} type="password" id="password" name="password" required /><br />
+                  <input type="submit" value="Register" className='submitButton' />
                 </form>
               </>
               : ''}
