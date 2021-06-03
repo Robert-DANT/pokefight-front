@@ -37,6 +37,7 @@ export default function Home() {
     const [winner, setWinner] = useState(false)
     const [winnerData, setWinnerData] = useState()
     const [winnerScore, setWinnerScore] = useState(false)
+    const [token, setToken] = useState(false)
 
     useEffect(() => {
         fetchData();
@@ -126,7 +127,7 @@ export default function Home() {
                 style={customStyles}
                 contentLabel="Start Screen Modal"
             >
-                <StartScreen setStartScreen={setStartScreen} />
+                <StartScreen setStartScreen={setStartScreen} token={token} setToken={setToken}/>
             </Modal>
             {!ownPokemon ? <OwnSelectionScreen pokeData={pokeData} img={img} data={data} selectFirstPokemon={selectFirstPokemon} setSelectedPokemon={setSelectedPokemon} />
                 : !opponentPokemon ?

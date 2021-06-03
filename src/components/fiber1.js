@@ -1,15 +1,13 @@
-import React, { useRef, useState, Suspense } from 'react'
+import React, { useRef, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei/core/useGLTF'
-import { ContactShadows, Environment, OrbitControls } from "@react-three/drei"
+import { OrbitControls } from "@react-three/drei"
 import './fiber.css'
 
 
 function Pokeball(props) {
     const mesh = useRef()
     const { nodes, materials } = useGLTF("/pokeball4.gltf")
-    console.log(nodes)  
-    console.log(materials)
     useFrame((state) => {
         const t = state.clock.getElapsedTime()
         mesh.current.rotation.z = -0.2 - (1 + Math.sin(t / 1.5)) / 1

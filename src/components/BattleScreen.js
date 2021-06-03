@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import { useEffect, useState } from 'react'
 import './BattleScreen.css';
-import { Box, Card, Image, Heading, Button, Flex } from 'rebass'
+import { Box,  Image, Button, Flex } from 'rebass'
 import './font.css'
 
 export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPokemon, calcWinner, setWinnerScore }) {

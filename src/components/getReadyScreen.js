@@ -4,7 +4,7 @@ import Starburst from './img/starburst.png'
 import ReadyScreenTitle from './img/readyscreentitle.png'
 import './getReady.css';
 import './font.css'
-import { Box, Card, Image, Heading, Text, Flex } from 'rebass'
+import { Box, Image, Heading, Flex } from 'rebass'
 import video from './img/versus_screen.mp4'
 
 export default function GetReady({ setReadyScreen, ownPokemon, opponentPokemon }) {

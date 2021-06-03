@@ -14,7 +14,6 @@ export default function Winner ({name, winner, startFromBeginning, winnerScore})
   useEffect(() => {
     fetchImg()
     fetchLeadb()
-    console.log(winner[1])
 }, []);
 
 
