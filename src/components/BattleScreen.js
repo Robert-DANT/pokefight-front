@@ -93,7 +93,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
         if (opponentData && playerData) {  
         const interval = setInterval(() => {
                 oppAttack()
-            }, (attackRate/opponentData.base.Speed));
+            }, (1000+(attackRate/opponentData.base.Speed)));
             return () => clearInterval(interval)
         }
     }, [opponentData, playerHp]);
@@ -101,7 +101,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
         if (opponentData && playerData) {  
         const interval = setInterval(() => {
                 oppSpecDefense()
-            }, (3*attackRate/opponentData.base.Speed));
+            }, (1000+(3*attackRate/opponentData.base.Speed)));
             return () => clearInterval(interval)
         }
     }, [opponentData, opponentHp]);
@@ -110,7 +110,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
         if (opponentData && playerData) {
         const interval = setInterval(() => {
                 setRecharge(false)
-            }, (attackRate/playerData.base.Speed));
+            }, (1000+(attackRate/playerData.base.Speed)));
             return () => clearInterval(interval)
         }
     }, [recharge]);
@@ -130,8 +130,6 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
 
     return (
         <div className='battleDiv'>
-            {/* // <h1> Battle </h1> */}
-
             <Flex flexWrap='wrap' mx={-2}>
                 <Box width={2 / 3} px={2}>
                     <div className='player1'>
