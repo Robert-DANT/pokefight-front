@@ -134,6 +134,7 @@ export default function StartScreen({ setStartScreen, token, setToken }) {
             setRegister(!register)
             setLogin(false)
           })}  style={{backgroundColor: register ? 'lightcoral' : 'chartreuse'}}>Register</button>
+          <button onClick={(() => setStartScreen(false))}>Start as Guest</button>
           {login ?
             <>
               <form onSubmit={handleLogin} id='loginForm' autocomplete="off">
