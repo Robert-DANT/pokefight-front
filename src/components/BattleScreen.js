@@ -12,7 +12,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
     const [playerHp, setPlayerHp] = useState(100)
     const [opponentHp, setOpponentHp] = useState(100)
     const [recharge, setRecharge] = useState(false)
-    const [spCharges, setSpCharges] = useState(4)
+    const [spCharges, setSpCharges] = useState(3)
 
     const attackRate = 50000
 
@@ -145,7 +145,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
                             {/* Here Starts Special Attack PB */}
                             <div>
                                 <label for="file" className='pokefont' style={{ color: "yellow" }}>SA: </label>
-                                <progress id="file" value={spCharges} max="4" />
+                                <progress id="file" value={spCharges} max="3" />
                             </div>
                         </div>
                     </div>
