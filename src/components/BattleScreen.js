@@ -93,7 +93,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
         if (opponentData && playerData) {  
         const interval = setInterval(() => {
                 oppAttack()
-            }, (1000+(attackRate/opponentData.base.Speed)));
+            }, (500+(attackRate/opponentData.base.Speed)));
             return () => clearInterval(interval)
         }
     }, [opponentData, playerHp]);
@@ -101,7 +101,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
         if (opponentData && playerData) {  
         const interval = setInterval(() => {
                 oppSpecDefense()
-            }, (1000+(3*attackRate/opponentData.base.Speed)));
+            }, (500+(3*attackRate/opponentData.base.Speed)));
             return () => clearInterval(interval)
         }
     }, [opponentData, opponentHp]);
@@ -110,7 +110,7 @@ export default function BattleScreen({ setBattleScreen, ownPokemon, opponentPoke
         if (opponentData && playerData) {
         const interval = setInterval(() => {
                 setRecharge(false)
-            }, (1000+(attackRate/playerData.base.Speed)));
+            }, (500+(attackRate/playerData.base.Speed)));
             return () => clearInterval(interval)
         }
     }, [recharge]);
